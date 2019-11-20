@@ -40,7 +40,7 @@ app.use(session({
 // ----------------------------------- Routes ----------------------------------- //
 
 app.get('/', (req, res) => {
-  res.send('<h1>AUTH API</h1>');
+  res.send('<h1>Wayfarer</h1>');
 });
 
 
