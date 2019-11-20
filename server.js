@@ -43,5 +43,6 @@ app.get('/', (req, res) => {
   res.send('<h1>Wayfarer</h1>');
 });
 
+app.use('/api/v1/auth', routes.auth);
 
 app.listen(PORT, () => console.log(`Server connected at http://localhost:${PORT}`));
