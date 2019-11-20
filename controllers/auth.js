@@ -12,24 +12,29 @@ const register = (req, res) => {
         //Existing User found:
         if (foundUser) return res.status(400).json({ status: 400, message: 'This user has already been registered, please log in or sign up with different information.'});
 
-        //Generate Salt
+        // Generate Salt (Asynchronous callback version)
         bcrypt.genSalt(10, (err, salt) => {
-            //throw err if there's and error
-            if (err) return res.status(500).json({ status: 500, message: 'Something went wrong, please try again' });
-
-            const newUser = {
+            if (err) return res.status(500).json({ status: 500, message: 'Something went wrong. Please try again' });
+            // if (err) throw err;
+      
+            // Hash User Password
+            bcrypt.hash(req.body.password, salt, (err, hash) => {
+              if (err) return res.status(500).json({ status: 500, message: 'Something went wrong. Please try again'});
+      
+              const newUser = {
                 name: req.body.name,
                 email: req.body.email,
-                password: hash
-            }
-
-            db.User.create(newUser, (err, savedUser) => {
+                password: hash,
+              }
+      
+              db.User.create(newUser, (err, savedUser) => {
                 if (err) return res.status(500).json({ status: 500, message: err});
-                res.sendStatus(201);
+                res.status(201).json({ status: 201, data: savedUser, message: 'success' });
+              });
             });
+          });
         });
-    });
-};
+  };
 
 module.exports = {
     register

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Post = require('./Post');
+const Schema = mongoose.Schema;
 
 const UserSchema = mongoose.Schema({
   name: {
@@ -21,7 +21,6 @@ const UserSchema = mongoose.Schema({
   },
   currentCity: {
     type: String,
-    required: [true, 'Current city is required'],
   },
   posts: [{
       type: Schema.Types.ObjectId,
