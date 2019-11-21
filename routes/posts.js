@@ -6,6 +6,6 @@ const ctrl = require('../controllers')
 
 //GET All Posts
 router.get('/all', ctrl.posts.showAll);
-router.get('/:id', crtl.posts.show);
+router.get('/:id', ctrl.posts.show);
 
 module.exports = router;
