@@ -14,7 +14,6 @@ const UserSchema = mongoose.Schema({
   password: {
     type: String,
     required: [true, 'Password is required'],
-    select: false,
   },
   photo: {
     type: String,
