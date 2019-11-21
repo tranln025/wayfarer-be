@@ -3,8 +3,8 @@ const db = require('../models');
 
 const register = (req, res) => {
     //Check that information exists
-    if (!req.body.name || !req.body.email || !req.body.password) {
-        return res.status(400).json({ status: 400, message: 'Please enter a name, email, and password' });
+    if (!req.body.username || !req.body.email || !req.body.password) {
+        return res.status(400).json({ status: 400, message: 'Please enter a username, email, and password' });
     }
     //Verify Account doesn't already exist:
     db.User.findOne({ email: req.body.email }, (err, foundUser) => {
@@ -22,7 +22,7 @@ const register = (req, res) => {
               if (err) return res.status(500).json({ status: 500, message: 'Something went wrong. Please try again'});
       
               const newUser = {
-                name: req.body.name,
+                username: req.body.username,
                 email: req.body.email,
                 password: hash,
               }
@@ -38,11 +38,11 @@ const register = (req, res) => {
 
 //POST Login
 const login = (req, res) => {
-    if (!req.body.email || !req.body.password) {
-        return res.status(400).json({ status: 400, message: 'Please enter your email and password' });
+    if (!req.body.username || !req.body.password) {
+        return res.status(400).json({ status: 400, message: 'Please enter your username and password' });
     }
     
-    db.User.findOne({email: req.body.email}, (err, foundUser) => {
+    db.User.findOne({username: req.body.username}, (err, foundUser) => {
         if (err) return res.status(500).json({ status: 500, message: 'Something went wrong. Please try again' });
     
         if (!foundUser) {

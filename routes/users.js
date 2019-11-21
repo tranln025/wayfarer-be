@@ -6,5 +6,7 @@ const ctrl = require('../controllers')
 
 //GET Profile by ID
 router.get('/:id', ctrl.users.show);
+//PUT Update Profile
+// router.put('/:id/update', ctrl.users.update);
 
 module.exports = router;
