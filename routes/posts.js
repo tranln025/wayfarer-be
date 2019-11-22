@@ -8,4 +8,11 @@ const ctrl = require('../controllers')
 router.get('/all', ctrl.posts.showAll);
 router.get('/:id', ctrl.posts.show);
 
+// ADD CITY
+router.post('/addCity', ctrl.posts.addCity);
+
+
+// ADD POST
+router.post('/new', ctrl.posts.addPost);
+
 module.exports = router;

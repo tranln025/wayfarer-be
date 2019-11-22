@@ -20,13 +20,13 @@ const register = (req, res) => {
             // Hash User Password
             bcrypt.hash(req.body.password, salt, (err, hash) => {
                 if (err) return res.status(500).json({ status: 500, message: 'Something went wrong. Please try again'});
-    
+        
                 const newUser = {
                     username: req.body.username,
                     email: req.body.email,
                     password: hash,
                 }
-    
+        
                 db.User.create(newUser, (err, savedUser) => {
                     if (err) return res.status(500).json({ status: 500, message: err});
                     res.status(201).json({ status: 201, data: savedUser, message: 'success' });
@@ -64,8 +64,8 @@ const login = (req, res) => {
 
 //Post Logout
 const logout = (req, res) => {
-    if(!req.session.currentUser) return res.status(401).json({ status: 401, message: 'Unauthorized' });
-    res.session.destroy((err) => {
+    if(!req.session.currentUser) return res.status(401).json({ status: 401, message: 'Unauthorized'});
+    req.session.destroy((err) => {
         if (err) return res.status(500).json({ status: 500, message: 'Something went wrong, please try again' });
         res.sendStatus(200);
     });

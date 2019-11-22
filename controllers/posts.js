@@ -17,7 +17,7 @@ const showAll = (req, res) => {
 
 // GET one post
 const show = (req, res) => {
-    db.Post.findById(req.____PostId_Here____, (err, foundPost) => {
+    db.Post.findById(req.params.id, (err, foundPost) => {
         if(err) return res.status(500).json({
             status: 500,
             message: err
@@ -27,6 +27,34 @@ const show = (req, res) => {
             status: 200,
             data: foundPost
         });
+    })
+    .populate('author')
+    .populate('city')
+};
+
+const addCity = (req, res) => {
+    db.City.create(req.body, (err, createdCity)=> {
+        if (err) return console.log(err);
+        res.json({
+            status: 201,
+            data: createdCity,
+        })
+    });
+}
+
+const addPost = (req, res) => {
+    // let newPost = {
+    //     title: req.body.title,
+    //     city: req.body.city,
+    //     content: req.body.content,
+    //     user: req.session.currentUser,
+    // }
+    db.Post.create(req.body, (error, createdPost)=>{
+        if (error) return console.log(error);
+        res.json({
+            status: 201,
+            data: createdPost,
+        })
     });
 };
 
@@ -41,9 +69,10 @@ const updatePost = (req, res) => {
 }
 
 
-
 module.exports = {
     showAll,
     show,
+    addCity,
+    addPost,
     updatePost
 };

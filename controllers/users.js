@@ -38,6 +38,9 @@ const update = (req, res) => {
         if (req.body.currentCity) {
             foundUser.currentCity = req.body.currentCity
         }
+        if (req.body.photo) {
+            foundUser.photo = req.body.photo;
+        }
 
         foundUser.save((err, updstedUser)=> {
             if (err) console.log(err);
