@@ -6,10 +6,9 @@ const ctrl = require('../controllers')
 
 //GET All Posts
 router.get('/all', ctrl.posts.showAll);
-router.get('/:id', ctrl.posts.show);
-
-// ADD CITY
-router.post('/addCity', ctrl.posts.addCity);
+// router.get('/:id', ctrl.posts.show);
+router.get('/find', ctrl.posts.findPosts);
+// router.get('/find/:cityName', ctrl.posts.findPostsByCityName);
 
 
 // ADD POST
