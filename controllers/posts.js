@@ -53,12 +53,6 @@ const addCity = (req, res) => {
 }
 
 const addPost = (req, res) => {
-    // let newPost = {
-    //     title: req.body.title,
-    //     city: req.body.city,
-    //     content: req.body.content,
-    //     user: req.session.currentUser,
-    // }
     db.Post.create(req.body, (error, createdPost)=>{
         if (error) return console.log(error);
         res.json({
@@ -71,12 +65,15 @@ const addPost = (req, res) => {
 // Update one post
 const updatePost = (req, res) => {
     // db.Post.findByIdAndUpdate(req.____PostId_Here____, 
-    //     { $set: {  } })
+    //     { $set: 
+    //         { city: req.body.city },
+    //         { title: req.body.title }
+    //     })
     db.Post.findById(req.____PostId_Here____, (err, foundPost) => {
         if (err) return console.log(err);
-        
-    })
-}
+        console.log(req.body);
+    });
+};
 
 
 module.exports = {
