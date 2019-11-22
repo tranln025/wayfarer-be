@@ -1,15 +1,15 @@
 const db = require('../models');
 
-const pokemonList = require('./pokemon.json');
+const cityList = require('./city.json');
 
 // removes all pokemon 
-db.Pokemon.remove({}, () => {
+db.City.remove({}, () => {
 	// loops through the json file
-	pokemonList.forEach(pokemon => {
+	cityList.forEach(city => {
 		// for each one creates a pokemon entry in the DB
-		db.Pokemon.create(pokemon, (error, createdPokemon) => {
+		db.City.create(city, (error, createdCity) => {
 			if (error) return console.log(error);
-			console.log(createdPokemon);
+			console.log(createdCity);
 		});
 	});
 });

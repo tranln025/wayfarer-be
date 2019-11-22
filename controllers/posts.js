@@ -28,9 +28,36 @@ const show = (req, res) => {
     });
 };
 
+const addCity = (req, res) => {
+    db.City.create(req.body, (err, createdCity)=> {
+        if (err) return console.log(err);
+        res.json({
+          status: 201,
+          data: createdCity,
+        })
+    });
+}
+
+const addPost = (req, res) => {
+    // let newPost = {
+    //     title: req.body.title,
+    //     city: req.body.city,
+    //     content: req.body.content,
+    //     user: req.session.currentUser,
+    // }
+    db.Post.create(req.body, (error, createdPost)=>{
+        if (error) return console.log(error);
+        res.json({
+          status: 201,
+          data: createdPost,
+        })
+    });
+};
 
 
 module.exports = {
     showAll,
-    show
+    show,
+    addCity,
+    addPost,
 };
