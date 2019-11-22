@@ -2,4 +2,4 @@ module.exports = {
     auth: require('./auth'),
     users: require('./users'),
     posts: require('./posts'),
-    cities: require('./cities')
+    cities: require('./cities')}
