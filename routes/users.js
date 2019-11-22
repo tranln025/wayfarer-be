@@ -4,6 +4,10 @@ const ctrl = require('../controllers')
 
 //PATH = /api/v1/users
 
+// FOR TESTING: get all, nuke all
+router.get('/all', ctrl.users.showAllUsers);
+router.delete('/all', ctrl.users.deleteAllUsers);
+
 //GET Profile by ID
 router.get('/:id', ctrl.users.show);
 //PUT Update Profile
