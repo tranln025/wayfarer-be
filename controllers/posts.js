@@ -45,9 +45,16 @@ const show = (req, res) => {
 const addPost = (req, res) => {
     db.Post.create(req.body, (error, createdPost)=>{
         if (error) return console.log(error);
-        res.json({
-            status: 201,
-            data: createdPost,
+        userId = req.session.currentUser;
+        console.log(userId);
+        createdPost.author = userId;
+        createdPost.save((err, savedPost) => {
+            if (err) return console.log(err);
+            console.log('Successfully created post');
+            res.json({
+                status: 201,
+                data: savedPost,
+            })    
         })
     });
 };
