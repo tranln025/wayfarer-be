@@ -2,7 +2,7 @@ const db = require('../models');
 
 // DELETE nuke all posts
 const deleteAllPosts = (req, res) => {
-    db.User.deleteMany({}, (err, deletedPosts) => {
+    db.Post.deleteMany({}, (err, deletedPosts) => {
         if (err) return console.log(err);
             res.json({
             status: 200,
