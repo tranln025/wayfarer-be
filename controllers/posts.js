@@ -1,5 +1,15 @@
 const db = require('../models');
 
+// DELETE nuke all posts
+const deleteAllPosts = (req, res) => {
+    db.User.deleteMany({}, (err, deletedPosts) => {
+        if (err) return console.log(err);
+            res.json({
+            status: 200,
+        });
+    });
+};
+
 // GET all posts
 const showAll = (req, res) => {
     db.Post.find({}, (err, allPosts) => {
@@ -74,5 +84,6 @@ module.exports = {
     show,
     addCity,
     addPost,
-    updatePost
+    updatePost,
+    deleteAllPosts
 };
