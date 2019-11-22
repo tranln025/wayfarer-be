@@ -106,11 +106,24 @@ const updatePost = (req, res) => {
 };
 
 
+// delete one post
+const deletePost = (req, res) => {
+    db.Post.findByIdAndDelete(req.params.id, (error, deletedPost) => {
+        if (error) return console.log(error);
+        res.json({
+            status: 200,
+            data: deletedPost
+        });
+    });
+}
+
+
 module.exports = {
     showAll,
     show,
     addPost,
     findPosts,
     updatePost,
-    deleteAllPosts
+    deleteAllPosts,
+    deletePost,
 };
