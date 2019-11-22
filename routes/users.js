@@ -9,7 +9,7 @@ router.get('/all', ctrl.users.showAllUsers);
 router.delete('/all', ctrl.users.deleteAllUsers);
 
 //GET Profile by ID
-router.get('/:id', ctrl.users.show);
+router.get('/findById/:id', ctrl.users.show);
 //PUT Update Profile
 router.put('/:id/update', ctrl.users.update);
 

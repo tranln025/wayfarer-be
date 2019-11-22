@@ -16,9 +16,14 @@ router.get('/all', ctrl.posts.showAll);
 // ADD POST
 router.post('/new', ctrl.posts.addPost);
 
+<<<<<<< HEAD
 
 // Find post 
 router.get('/find', ctrl.posts.findPosts);
 
+=======
+// DELETE POST
+router.delete('/:id', ctrl.posts.deletePost);
+>>>>>>> submaster
 
 module.exports = router;
