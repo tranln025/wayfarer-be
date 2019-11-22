@@ -43,12 +43,6 @@ const show = (req, res) => {
 };
 
 const addPost = (req, res) => {
-    // let newPost = {
-    //     title: req.body.title,
-    //     city: req.body.city,
-    //     content: req.body.content,
-    //     user: req.session.currentUser,
-    // }
     db.Post.create(req.body, (error, createdPost)=>{
         if (error) return console.log(error);
         res.json({
@@ -85,11 +79,24 @@ const updatePost = (req, res) => {
 }
 
 
+// delete one post
+const deletePost = (req, res) => {
+    db.Post.findByIdAndDelete(req.params.id, (error, deletedPost) => {
+        if (error) return console.log(error);
+        res.json({
+            status: 200,
+            data: deletedPost
+        });
+    });
+}
+
+
 module.exports = {
     showAll,
     show,
     addPost,
     findPosts,
     updatePost,
-    deleteAllPosts
+    deleteAllPosts,
+    deletePost,
 };
