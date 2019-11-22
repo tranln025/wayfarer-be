@@ -15,4 +15,7 @@ router.get('/:id', ctrl.posts.show);
 // ADD POST
 router.post('/new', ctrl.posts.addPost);
 
+// DELETE POST
+router.delete('/:id', ctrl.posts.deletePost);
+
 module.exports = router;
