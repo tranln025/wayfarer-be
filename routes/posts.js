@@ -9,6 +9,7 @@ router.delete('/all', ctrl.posts.deleteAllPosts);
 
 //GET All Posts
 router.get('/all', ctrl.posts.showAll);
+
 router.get('/:id', ctrl.posts.show);
 
 // ADD POST

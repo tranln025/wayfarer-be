@@ -1,5 +1,6 @@
 const db = require('../models');
 
+
 const addCity = (req, res) => {
   db.City.create(req.body, (err, createdCity)=> {
       if (err) return console.log(err);
@@ -38,3 +39,4 @@ module.exports = {
   deleteAllCities,
   showAllCities
 }
+

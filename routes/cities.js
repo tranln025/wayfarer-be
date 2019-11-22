@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+
 const ctrl = require('../controllers');
 
 // PATH = /api/v1/cities
@@ -14,3 +15,4 @@ router.post('/new', ctrl.cities.addCity);
 router.delete('/all', ctrl.cities.deleteAllCities)
 
 module.exports = router;
+
