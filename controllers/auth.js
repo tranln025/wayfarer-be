@@ -16,25 +16,27 @@ const register = (req, res) => {
         bcrypt.genSalt(10, (err, salt) => {
             if (err) return res.status(500).json({ status: 500, message: 'Something went wrong. Please try again' });
             // if (err) throw err;
-      
+    
             // Hash User Password
             bcrypt.hash(req.body.password, salt, (err, hash) => {
-              if (err) return res.status(500).json({ status: 500, message: 'Something went wrong. Please try again'});
-      
-              const newUser = {
-                username: req.body.username,
-                email: req.body.email,
-                password: hash,
-              }
-      
-              db.User.create(newUser, (err, savedUser) => {
-                if (err) return res.status(500).json({ status: 500, message: err});
-                res.status(201).json({ status: 201, data: savedUser, message: 'success' });
-              });
+                if (err) return res.status(500).json({ status: 500, message: 'Something went wrong. Please try again'});
+        
+                const newUser = {
+                    username: req.body.username,
+                    email: req.body.email,
+                    password: hash,
+                }
+        
+                db.User.create(newUser, (err, savedUser) => {
+                    if (err) return res.status(500).json({ status: 500, message: err});
+                    req.session.currentUser = { id: savedUser._id };
+                    console.log(req.session);
+                    return res.status(201).json({ status: 201, data: savedUser._id, message: 'success' });
+                });
             });
-          });
         });
-  };
+    });
+};
 
 //POST Login
 const login = (req, res) => {
@@ -46,7 +48,7 @@ const login = (req, res) => {
         if (err) return res.status(500).json({ status: 500, message: 'Something went wrong. Please try again' });
     
         if (!foundUser) {
-          return res.status(400).json({ status: 400, message: 'Username or password is incorrect'});
+            return res.status(400).json({ status: 400, message: 'Username or password is incorrect'});
         }
     
         bcrypt.compare(req.body.password, foundUser.password, (err, isMatch) => {
@@ -65,7 +67,8 @@ const login = (req, res) => {
 //Post Logout
 const logout = (req, res) => {
     if(!req.session.currentUser) return res.status(401).json({ status: 401, message: 'Unauthorized' });
-    res.session.destroy((err) => {
+
+    req.session.destroy((err) => {
         if (err) return res.status(500).json({ status: 500, message: 'Something went wrong, please try again' });
         res.sendStatus(200);
     });

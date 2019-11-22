@@ -1,6 +1,32 @@
 const db = require('../models');
 
+// GET all users
+const showAllUsers = (req, res) => {
+    db.User.find({}, (err, allUsers) => {
+        if (err) {
+            return console.log(err)
+        };
+        res.json({
+            status: 200,
+            count: allUsers.length,
+            data: allUsers,
+        });
+    });
+}
+
+// DELETE nuke all users
+const deleteAllUsers = (req, res) => {
+    db.User.deleteMany({}, (err, deletedUsers) => {
+        if (err) return console.log(err);
+            res.json({
+            status: 200,
+        });
+    });
+};
+
+// GET show one user
 const show = (req, res) => {
+    console.log(req.session);
     if(!req.session.currentUser) return res.status(401).json({
         status: 401,
         message: 'Please log in and try again'
@@ -19,6 +45,7 @@ const show = (req, res) => {
     });
 };
 
+// UPDATE one user
 const update = (req, res) => {
 
     if(!req.session.currentUser) return res.status(401).json({
@@ -58,4 +85,6 @@ const update = (req, res) => {
 module.exports = {
     show,
     update,
+    showAllUsers,
+    deleteAllUsers
 };
