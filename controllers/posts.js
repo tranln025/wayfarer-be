@@ -15,7 +15,7 @@ const showAll = (req, res) => {
 };
 
 const show = (req, res) => {
-    db.Post.findById(req.____PostId_Here____, (err, foundPost) => {
+    db.Post.findById(req.params.postId, (err, foundPost) => {
         if(err) return res.status(500).json({
             status: 500,
             message: err
@@ -25,7 +25,9 @@ const show = (req, res) => {
             status: 200,
             data: foundPost
         });
-    });
+    })
+    .populate('author')
+    .populate('city')
 };
 
 
