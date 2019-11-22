@@ -15,7 +15,7 @@ const showAll = (req, res) => {
 };
 
 const show = (req, res) => {
-    db.Post.findById(req.params.postId, (err, foundPost) => {
+    db.Post.findById(req.params.id, (err, foundPost) => {
         if(err) return res.status(500).json({
             status: 500,
             message: err
