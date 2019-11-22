@@ -69,9 +69,9 @@ const update = (req, res) => {
             foundUser.photo = req.body.photo;
         }
 
-        foundUser.save((err, updstedUser)=> {
+        foundUser.save((err, updatedUser)=> {
             if (err) console.log(err);
-            console.log(updstedUser)
+            console.log(updatedUser)
         });
 
         res.json({

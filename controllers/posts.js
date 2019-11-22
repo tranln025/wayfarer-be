@@ -70,14 +70,31 @@ const findPosts = (req, res) => {
 
 // Update one post
 const updatePost = (req, res) => {
-    // db.Post.findByIdAndUpdate(req.____PostId_Here____, 
-    //     { $set: 
-    //         { city: req.body.city },
-    //         { title: req.body.title }
-    //     })
-    db.Post.findById(req.____PostId_Here____, (err, foundPost) => {
+    db.Post.findById(req.params.id, (err, foundPost) => {
         if (err) return console.log(err);
         console.log(req.body);
+        if (req.body.city) {
+            foundPost.city = req.body.city;
+        };
+        if (req.body.title) {
+            foundPost.title = req.body.title;
+        };
+        if (req.body.content) {
+            foundPost.content = req.body.content;
+        };
+        if (req.body.photo) {
+            foundPost.photo = req.body.photo;
+        };
+
+        foundPost.save((err, updatedPost)=> {
+            if (err) console.log(err);
+            console.log(updatedPost)
+        });
+
+        res.json({
+            status: 201,
+            data: foundPost,
+        });
     });
 };
 

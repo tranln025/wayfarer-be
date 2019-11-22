@@ -3,3 +3,4 @@ module.exports = {
     users: require('./users'),
     posts: require('./posts'),
     cities: require('./cities')
+}
