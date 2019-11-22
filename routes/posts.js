@@ -9,10 +9,8 @@ router.delete('/all', ctrl.posts.deleteAllPosts);
 
 //GET All Posts
 router.get('/all', ctrl.posts.showAll);
-// router.get('/:id', ctrl.posts.show);
-router.get('/find', ctrl.posts.findPosts);
-// router.get('/find/:cityName', ctrl.posts.findPostsByCityName);
 
+router.get('/:id', ctrl.posts.show);
 
 // ADD POST
 router.post('/new', ctrl.posts.addPost);

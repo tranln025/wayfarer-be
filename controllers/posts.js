@@ -2,7 +2,7 @@ const db = require('../models');
 
 // DELETE nuke all posts
 const deleteAllPosts = (req, res) => {
-    db.User.deleteMany({}, (err, deletedPosts) => {
+    db.Post.deleteMany({}, (err, deletedPosts) => {
         if (err) return console.log(err);
             res.json({
             status: 200,
@@ -41,16 +41,6 @@ const show = (req, res) => {
     .populate('author')
     .populate('city')
 };
-
-// const addCity = (req, res) => {
-//     db.City.create(req.body, (err, createdCity)=> {
-//         if (err) return console.log(err);
-//         res.json({
-//             status: 201,
-//             data: createdCity,
-//         })
-//     });
-// }
 
 const addPost = (req, res) => {
     // let newPost = {
