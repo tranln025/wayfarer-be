@@ -26,6 +26,7 @@ const deleteAllUsers = (req, res) => {
 
 // GET show one user
 const show = (req, res) => {
+    console.log(req.session);
     if(!req.session.currentUser) return res.status(401).json({
         status: 401,
         message: 'Please log in and try again'
