@@ -8,7 +8,7 @@ const PostSchema = mongoose.Schema({
 },
   title: {
     type: String,
-    required: function() { return this.title.length < 201 && this.title.length > 0; },
+    // required: function() { return this.title.length < 201 && this.title.length > 0; },
   },
   photo: {
     type: String,
