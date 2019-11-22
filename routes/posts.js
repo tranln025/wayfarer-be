@@ -12,7 +12,13 @@ router.get('/all', ctrl.posts.showAll);
 
 router.get('/:id', ctrl.posts.show);
 
+
 // ADD POST
 router.post('/new', ctrl.posts.addPost);
+
+
+// Find post 
+router.get('/find', ctrl.posts.findPosts);
+
 
 module.exports = router;
