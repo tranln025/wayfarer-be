@@ -29,8 +29,10 @@ const register = (req, res) => {
         
                 db.User.create(newUser, (err, savedUser) => {
                 if (err) return res.status(500).json({ status: 500, message: err});
-                res.status(201).json({ status: 201, data: savedUser, message: 'success' });
-                });
+                req.session.currentUser = { id: savedUser._id };
+                console.log(req.session);
+                return res.status(201).json({ status: 201, data: savedUser._id, message: 'success' });
+              });
             });
         });
     });
@@ -64,7 +66,8 @@ const login = (req, res) => {
 
 //Post Logout
 const logout = (req, res) => {
-    if(!req.session.currentUser) return res.status(401).json({ status: 401, message: 'Unauthorized'});
+    if(!req.session.currentUser) return res.status(401).json({ status: 401, message: 'Unauthorized' });
+
     req.session.destroy((err) => {
         if (err) return res.status(500).json({ status: 500, message: 'Something went wrong, please try again' });
         res.sendStatus(200);
