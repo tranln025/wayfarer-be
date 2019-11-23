@@ -10,7 +10,8 @@ router.delete('/all', ctrl.posts.deleteAllPosts);
 //GET All Posts
 router.get('/all', ctrl.posts.showAll);
 
-router.get('/:id', ctrl.posts.show);
+// router.get('/:id', ctrl.posts.show);
+router.get('/findById/:id', ctrl.posts.show);
 
 
 // ADD POST
