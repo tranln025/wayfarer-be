@@ -12,12 +12,14 @@ const deleteAllPosts = (req, res) => {
 
 // GET all posts
 const showAll = (req, res) => {
-    db.Post.find({}, (err, allPosts) => {
+    db.Post.find({})
+    .populate('author')
+    .populate('city')
+    .exec((err, allPosts) => {
         if(err) return res.status(500).json({
             status: 500,
             message: err
         });
-
         res.status(200).json({
             status: 200,
             data: allPosts
@@ -27,19 +29,19 @@ const showAll = (req, res) => {
 
 // GET one post
 const show = (req, res) => {
-    db.Post.findById(req.params.id, (err, foundPost) => {
+    db.Post.findById(req.params.id)
+    .populate('author')
+    .populate('city')
+    .exec((err, foundPost) => {
         if(err) return res.status(500).json({
             status: 500,
             message: err
         });
-
         res.status(200).json({
             status: 200,
             data: foundPost
         });
-    })
-    .populate('author')
-    .populate('city')
+    });
 };
 
 const addPost = (req, res) => {
