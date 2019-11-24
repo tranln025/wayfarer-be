@@ -49,10 +49,6 @@ const addPost = (req, res) => {
     db.Post.create(postData, (error, createdPost)=>{
         if (error) return console.log(error);
         console.log('Successfully created post');
-        // res.json({
-        //     status: 201,
-        //     data: createdPost,
-        // });
         db.User.findById(createdPost.author, (err, foundUser) => {
             if (err) return console.log(err);
             foundUser.posts.push(createdPost._id);
@@ -62,9 +58,12 @@ const addPost = (req, res) => {
                     status: 201,
                     data: updatedUser,
                 });
-            })
-        })
-        
+            });
+        });
+        res.json({
+            status: 201,
+            data: createdPost,
+        });
     });
 };
 
