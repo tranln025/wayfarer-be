@@ -44,12 +44,38 @@ const show = (req, res) => {
     });
 };
 
+// const addPost = (req, res) => {
+//     const postData = {...req.body, author: req.session.currentUser.id};
+//     db.Post.create(postData, (error, createdPost)=>{
+//         if (error) return console.log(error);
+//        userId = req.session.currentUser;
+//     //    userId = "5dd8874e18920f24c824d9a7"
+//         console.log(userId);
+//         createdPost.author = userId;
+//         createdPost.save((err, savedPost) => {
+//             if (err) return console.log(err);
+//             console.log('Successfully created post');
+//             db.User.findById(userId,(err,user)=>{
+//                 if (err) return res.json(500)
+//                 if(user){
+//                 user.posts.push(createdPost._id)
+//                 user.save((err,saved)=>{
+//                     console.log('yeet')
+//                 })}
+//             })
+//             res.json({
+//                 status: 201,
+//                 data: savedPost,
+//             })    
+//         })
+//     });
+// };
+
 const addPost = (req, res) => {
-    const postData = {...req.body, author: req.session.currentUser.id};
+    const postData = {...req.body, author: req.session.currentUser};
     db.Post.create(postData, (error, createdPost)=>{
         if (error) return console.log(error);
-<<<<<<< HEAD
-       userId = req.session.currentUser;
+       const userId = req.session.currentUser;
     //    userId = "5dd8874e18920f24c824d9a7"
         console.log(userId);
         createdPost.author = userId;
@@ -57,11 +83,12 @@ const addPost = (req, res) => {
             if (err) return console.log(err);
             console.log('Successfully created post');
             db.User.findById(userId,(err,user)=>{
-                if (err) return res.json(500)
+                if (err) return console.log(err)
                 if(user){
                 user.posts.push(createdPost._id)
                 user.save((err,saved)=>{
-                    console.log('yeet')
+                    if (err) return console.log(err)
+                    return console.log(saved);
                 })}
             })
             res.json({
@@ -69,13 +96,6 @@ const addPost = (req, res) => {
                 data: savedPost,
             })    
         })
-=======
-        console.log('Successfully created post');
-        res.json({
-            status: 201,
-            data: createdPost,
-        }) 
->>>>>>> submaster
     });
 };
 
