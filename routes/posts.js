@@ -17,6 +17,9 @@ router.get('/findById/:id', ctrl.posts.show);
 // ADD POST
 router.post('/new', ctrl.posts.addPost);
 
+// UPDATE POST
+// router.put('/:id/update', ctrl.posts.update);
+
 
 // Find post 
 router.get('/find', ctrl.posts.findPosts);
