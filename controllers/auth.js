@@ -25,6 +25,7 @@ const register = (req, res) => {
                     username: req.body.username,
                     email: req.body.email,
                     password: hash,
+                    currentCity: req.body.currentCity,
                 }
         
                 db.User.create(newUser, (err, savedUser) => {

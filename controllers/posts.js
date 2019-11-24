@@ -45,8 +45,7 @@ const show = (req, res) => {
 };
 
 const addPost = (req, res) => {
-    console.log(req.session.currentUser.id)
-    const postData = {...req.body, author: req.session.currentUser.id}
+    const postData = {...req.body, author: req.session.currentUser.id};
     db.Post.create(postData, (error, createdPost)=>{
         if (error) return console.log(error);
         console.log('Successfully created post');
