@@ -48,7 +48,6 @@ const addPost = (req, res) => {
     const postData = {...req.body, author: req.session.currentUser.id};
     db.Post.create(postData, (error, createdPost)=>{
         if (error) return console.log(error);
-<<<<<<< HEAD
        userId = req.session.currentUser;
     //    userId = "5dd8874e18920f24c824d9a7"
         console.log(userId);
@@ -69,13 +68,6 @@ const addPost = (req, res) => {
                 data: savedPost,
             })    
         })
-=======
-        console.log('Successfully created post');
-        res.json({
-            status: 201,
-            data: createdPost,
-        }) 
->>>>>>> submaster
     });
 };
 
