@@ -62,10 +62,6 @@ const addPost = (req, res) => {
                 });
             });
         });
-        res.json({
-            status: 201,
-            data: createdPost,
-        });
     });
 };
 

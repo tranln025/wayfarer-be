@@ -10,10 +10,6 @@ const CitySchema = mongoose.Schema({
         require: [true, 'Country name is required'],
     },
     photo: String,
-    country: {
-        type: String,
-        require: [true, 'Country is required']
-    }
 })
 
 const City = mongoose.model('City', CitySchema);
