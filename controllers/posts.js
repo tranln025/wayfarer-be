@@ -73,7 +73,7 @@ const show = (req, res) => {
 // };
 
 const addPost = (req, res) => {
-    const postData = {...req.body, author: req.session.currentUser};
+    const postData = {...req.body, author: req.session.currentUser.id};
     db.Post.create(postData, (error, createdPost)=>{
         if (error) return console.log(error);
         console.log('Successfully created post');
@@ -88,10 +88,10 @@ const addPost = (req, res) => {
                 });
             });
         });
-        res.json({
-            status: 201,
-            data: createdPost,
-        });
+        // res.json({
+        //     status: 201,
+        //     data: createdPost,
+        // });
     });
 };
 
