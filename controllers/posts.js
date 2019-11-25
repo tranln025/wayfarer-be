@@ -6,6 +6,7 @@ const deleteAllPosts = (req, res) => {
         if (err) return console.log(err);
             res.json({
             status: 200,
+            data: deletedPosts
         });
     });
 };
@@ -44,6 +45,7 @@ const show = (req, res) => {
     });
 };
 
+
 const addPost = (req, res) => {
     const postData = {...req.body, author: req.session.currentUser.id};
     db.Post.create(postData, (error, createdPost)=>{
@@ -60,10 +62,10 @@ const addPost = (req, res) => {
                 });
             });
         });
-        res.json({
-            status: 201,
-            data: createdPost,
-        });
+        // res.json({
+        //     status: 201,
+        //     data: createdPost,
+        // });
     });
 };
 
@@ -85,6 +87,7 @@ const findPosts = (req, res) => {
 
 // Update one post
 const updatePost = (req, res) => {
+    console.log('beep');
     db.Post.findById(req.params.id, (err, foundPost) => {
         if (err) return console.log(err);
         console.log(req.body);
