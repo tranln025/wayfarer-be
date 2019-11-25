@@ -6,6 +6,7 @@ const deleteAllPosts = (req, res) => {
         if (err) return console.log(err);
             res.json({
             status: 200,
+            data: deletedPosts
         });
     });
 };
@@ -75,27 +76,22 @@ const addPost = (req, res) => {
     const postData = {...req.body, author: req.session.currentUser};
     db.Post.create(postData, (error, createdPost)=>{
         if (error) return console.log(error);
-       const userId = req.session.currentUser;
-    //    userId = "5dd8874e18920f24c824d9a7"
-        console.log(userId);
-        createdPost.author = userId;
-        createdPost.save((err, savedPost) => {
+        console.log('Successfully created post');
+        db.User.findById(createdPost.author, (err, foundUser) => {
             if (err) return console.log(err);
-            console.log('Successfully created post');
-            db.User.findById(userId,(err,user)=>{
-                if (err) return console.log(err)
-                if(user){
-                user.posts.push(createdPost._id)
-                user.save((err,saved)=>{
-                    if (err) return console.log(err)
-                    return console.log(saved);
-                })}
-            })
-            res.json({
-                status: 201,
-                data: savedPost,
-            })    
-        })
+            foundUser.posts.push(createdPost._id);
+            foundUser.save((err, updatedUser) => {
+                if (err) return console.log(err);
+                res.json({
+                    status: 201,
+                    data: updatedUser,
+                });
+            });
+        });
+        res.json({
+            status: 201,
+            data: createdPost,
+        });
     });
 };
 
