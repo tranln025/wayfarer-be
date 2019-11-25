@@ -2,7 +2,7 @@ const db = require('./models');
 
 const cityList = [
   {
-    name: "San Franciso",
+    name: "San Francisco",
     photo: "https://cdn.aarp.net/content/dam/aarp/travel/destination-guides/2018/04/1140-travel-destination-san-francisco-main-page.imgcache.rev2e8bf9592b441099e8e7efb70e1c1e4b.web.650.370.jpg",
     country: "United States"
   },
@@ -42,7 +42,7 @@ const cityList = [
     country: "Hong Kong"
   },
   {
-    name: "Bankok",
+    name: "Bangkok",
     photo: "https://www.citizenm.com/cache/images/seattle_city_image_1200x675-1_004b02a34b02a3.jpg",
     country: "Thailand"
   },
