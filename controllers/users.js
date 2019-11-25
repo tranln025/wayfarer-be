@@ -2,7 +2,9 @@ const db = require('../models');
 
 // GET all users
 const showAllUsers = (req, res) => {
-    db.User.find({}, (err, allUsers) => {
+    db.User.find({})
+    .populate('posts')
+    .exec((err, allUsers) => {
         if (err) {
             return console.log(err)
         };
@@ -12,7 +14,7 @@ const showAllUsers = (req, res) => {
             data: allUsers,
         });
     });
-}
+};
 
 // DELETE nuke all users
 const deleteAllUsers = (req, res) => {
@@ -32,7 +34,9 @@ const show = (req, res) => {
         message: 'Please log in and try again'
     });
 
-    db.User.findById(req.session.currentUser.id, (err, foundUser) => {
+    db.User.findById(req.session.currentUser.id)
+    .populate('posts')
+    .exec((err, foundUser) => {
         if (err) return res.status(500).json({
             status: 500,
             message: err
