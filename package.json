@@ -24,6 +24,5 @@
     "express-session": "^1.17.0",
     "mongoose": "^5.7.12",
     "nodemon": "^2.0.0"
-  
   }
 }
