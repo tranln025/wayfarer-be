@@ -13,7 +13,7 @@ const routes = require('./routes');
 
 // CORS - Cross Origi Resource Sharing
 const corsOptions = {
-  origin: [`http://localhost:3000`],
+  origin: [`http://localhost:3000`, 'https://wayfarer-ca.herokuapp.com'],
   credentials: true, // allows the session cookie to be sent back and forth from server to client
   optionsSuccessStatus: 200 // some legacy browsers choke on satus 204
 };
@@ -28,7 +28,7 @@ app.use(bodyParser.json());
 
 app.use(session({
   // Store session in DB
-  store: new MongoStore({ url: process.env.MONGO_URI }),
+  store: new MongoStore({ url: process.env.MONGODB_URI }),
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false, // Only create session if a propery has been added to session,
