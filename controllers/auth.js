@@ -9,12 +9,12 @@ const register = (req, res) => {
     db.User.findOne({ username: req.body.username }, (err, foundUser) => {
         if (err) return res.status(500).json({ status: 500, message: 'Something went wrong... Please try again!'});
         //Existing User found:
-        if (foundUser) return res.status(400).json({ status: 400, message: 'This user has already been registered, please log in or sign up with different information.'});
+        if (foundUser) return res.status(400).json({ status: 400, message: 'found username'});
         //Verify Account doesn't already exist:
         db.User.findOne({ email: req.body.email }, (err, foundUser) => {
             if (err) return res.status(500).json({ status: 500, message: 'Something went wrong... Please try again!'});
             //Existing User found:
-            if (foundUser) return res.status(400).json({ status: 400, message: 'This user has already been registered, please log in or sign up with different information.'});
+            if (foundUser) return res.status(400).json({ status: 400, message: 'found email'});
 
             // Generate Salt (Asynchronous callback version)
             bcrypt.genSalt(10, (err, salt) => {
