@@ -28,7 +28,7 @@ app.use(bodyParser.json());
 
 app.use(session({
   // Store session in DB
-  store: new MongoStore({ url: process.env.MONGO_URI }),
+  store: new MongoStore({ url: process.env.MONGODB_URI }),
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false, // Only create session if a propery has been added to session,
