@@ -53,26 +53,9 @@ const cityList = [
   }
 ];
 
-// db.City.deleteMany({}, (err, cities) => {
-//   if (err) {
-//     return console.log("Error occurred in removing all cities", err);
-//   } else {
-//     console.log("Succesfully removed all cities from database.");
-//     db.City.create(cityList), (err, createdCities) => {
-//       if (err) {
-//         return console.log("Error occurred in seeding cities", err);
-//       };
-//       console.log("Successfully seeded cities database.");
-//       process.exit();
-//     }
-//   }
-// })
-
-db.City.remove({}, () => {
-	cityList.forEach(city => {
-		db.City.create(city, (error, createdCity) => {
-			if (error) return console.log(error);
-			console.log(createdCity);
-		});
-	});
+db.City.deleteMany({}, () => {
+  db.City.create(cityList, (error, createdCity) => {
+    if (error) return console.log(error);
+    console.log(createdCity);
+  });
 });
