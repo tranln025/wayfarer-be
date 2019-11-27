@@ -11,7 +11,7 @@ const routes = require('./routes');
 
 // --------------------------------- Middleware --------------------------------- //
 
-// CORS - Cross Origi Resource Sharing
+// CORS - Cross Origin Resource Sharing
 const corsOptions = {
   origin: [`http://localhost:3000`],
   credentials: true, // allows the session cookie to be sent back and forth from server to client

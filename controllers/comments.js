@@ -32,7 +32,7 @@ const addComment = (req, res) => {
 };
 
 const deleteAllComments = (req, res) => {
-  db.Comment.deleteMany({}, (err, deletedComments) => {
+  db.Comment.deleteMany({}, (err, deletedCount) => {
     if (err) return console.log(err);
     res.json({
       status: 200,
