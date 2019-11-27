@@ -1,16 +1,5 @@
 const db = require('../models');
 
-// DELETE nuke all posts
-const deleteAllPosts = (req, res) => {
-    db.Post.deleteMany({}, (err, deletedPosts) => {
-        if (err) return console.log(err);
-            res.json({
-            status: 200,
-            data: deletedPosts
-        });
-    });
-};
-
 // GET all posts
 const showAll = (req, res) => {
     db.Post.find({})
@@ -67,41 +56,24 @@ const addPost = (req, res) => {
 const findPosts = (req, res) => {
     db.City.find(req.query, (error, foundCity)=> {
         if (error) return console.log(error);
-        city_id = foundCity[0]._id;
-        db.Post.find({city: city_id._id}).populate('author').exec((error, foundPosts)=> {
+        cityId = foundCity[0]._id;
+        db.Post.find({city: cityId._id}).populate('author').exec((error, foundPosts)=> {
             if (error) return console.log(error);
             res.json({
                 status: 201,
                 data: foundPosts,
             })
         }); 
-    })
+    });
 };
 
 // Update one post
 const updatePost = (req, res) => {
-    db.Post.findById(req.params.id, (err, foundPost) => {
+    db.Post.findByIdAndUpdate(req.params.id, req.body, (err, updatedPost) => {
         if (err) return console.log(err);
-        if (req.body.city) {
-            foundPost.city = req.body.city;
-        };
-        if (req.body.title) {
-            foundPost.title = req.body.title;
-        };
-        if (req.body.content) {
-            foundPost.content = req.body.content;
-        };
-        if (req.body.photo) {
-            foundPost.photo = req.body.photo;
-        };
-
-        foundPost.save((err, updatedPost)=> {
-            if (err) console.log(err);
-        });
-
         res.json({
             status: 201,
-            data: foundPost,
+            data: updatedPost,
         });
     });
 };
@@ -116,7 +88,7 @@ const deletePost = (req, res) => {
             data: deletedPost
         });
     });
-}
+};
 
 
 module.exports = {
@@ -125,6 +97,5 @@ module.exports = {
     addPost,
     findPosts,
     updatePost,
-    deleteAllPosts,
     deletePost,
 };

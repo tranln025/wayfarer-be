@@ -6,12 +6,12 @@ const ctrl = require('../controllers');
 // PATH = /api/v1/comments
 
 // GET all comments
-router.get('/all', ctrl.comments.showAllComments);
+router.get('/', ctrl.comments.showAllComments);
 
 // ADD new comment
-router.post('/new', ctrl.comments.addComment);
+router.post('/', ctrl.comments.addComment);
 
-// DELETE all comments
-router.delete('/all', ctrl.comments.deleteAllComments);
+// // DELETE all comments
+// router.delete('/', ctrl.comments.deleteAllComments);
 
 module.exports = router;
