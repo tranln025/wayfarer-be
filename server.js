@@ -49,4 +49,4 @@ app.use('/api/v1/posts', routes.posts);
 app.use('/api/v1/cities', routes.cities);
 app.use('/api/v1/comments', routes.comments);
 
-app.listen(PORT, () => console.log(`Server connected at http://localhost:${PORT}`));
+app.listen(PORT, () => console.log(`Server connected at ${PORT}`));
